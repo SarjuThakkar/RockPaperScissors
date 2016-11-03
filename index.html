@@ -1,0 +1,111 @@
+<script>
+var compScore = 0;
+var myScore = 0;
+var points = 1;
+var compChoice = Math.random();
+function compRand(compChoice){
+if(compChoice <= .33){
+    compChoice="Rock"
+    console.log("CPU: " + compChoice);
+    return compChoice;
+}
+else if(compChoice > .33 && compChoice < .67){
+    compChoice="Paper"
+    console.log("CPU: " + compChoice);
+    return compChoice;
+}
+else {
+    compChoice = "Scissors"
+    console.log("CPU: " + compChoice);
+    return compChoice;
+}
+}
+compChoice = compRand(compChoice);
+var myChoice = prompt("Rock, Paper, or Scissors?");
+function userChoice(myChoice){
+if(myChoice == "Rock" || myChoice == "Paper" || myChoice == "Scissors"){
+    console.log("You: " + myChoice);
+    return myChoice;
+}
+else if(myChoice === "QUIT"){
+    return;
+}
+else{
+    var myChoice = prompt("Your last response was invalid. Please type Rock, Paper, or Scissors");
+    return userChoice(myChoice);
+}
+}
+myChoice = userChoice(myChoice);
+function determine(my, comp){
+    if(my === comp){
+        points = points + 1;
+        console.log(points);
+        var myChoice = prompt("It was a tie. Next win will be awarded " + points + " points. Rock, Paper, or Scissors?");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+    }
+    else if(my === "Rock"){
+        if(comp === "Scissors"){
+            myScore = myScore + points;
+            var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Rock, CPU chose Scissors, you won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+        else {            
+            compScore = compScore + points;
+            var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Rock, CPU chose Paper, CPU won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+    }
+    else if(my === "Paper"){
+        if(comp === "Rock"){
+            myScore = myScore + points;
+           var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Paper, CPU chose Rock, you won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+        else {            
+            compScore = compScore + points;
+                       var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Paper, CPU chose Scissors, CPU won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+    }
+    else if(my === "Scissors"){
+        if(comp === "Paper"){
+            myScore = myScore + points;
+                       var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Scissors, CPU chose Paper, you won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+        else {            
+            compScore = compScore + points;
+            var myChoice = prompt("Rock, Paper, or Scissors?" + " CPU Score: " + compScore + " Your Score: " + myScore + " You chose Scissors, CPU chose Rock, CPU won " + points + " points");
+        myChoice = userChoice(myChoice);
+        var compChoice = Math.random();
+        compChoice = compRand(compChoice);
+        determine(myChoice, compChoice);
+        points = 1;
+        }
+    }
+}
+determine(myChoice, compChoice);
+</script>
